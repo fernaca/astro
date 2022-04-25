@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: About{% endblock title %}
+
+{% block content %}
+
+<div class="header-title white ken-burn" data-parallax="scroll" data-position="top" data-natural-height="550"
+    data-natural-width="1366" data-image-src="{% static 'background3.jpg' %}">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>José Joaquín Pérez</h1>
+            <p>About me</p>
+        </div>
+    </div>
+</div>
+
+
+{% comment %} <div class="header-title white" data-parallax="scroll" data-position="top" data-natural-height="550"
+    data-natural-width="1366" data-image-src="{% static 'images/title-4.jpg' %}">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>José Joaquín Pérez</h1>
+            <p>About me</p>
+        </div>
+    </div>
+</div> {% endcomment %}
+<div class="section-empty">
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-6">
+                <p>
+                    I’ve been taken astrophotography over 10 years, but my fascination for the firmament goes back to my
+                    childhood, during the time I lived in the region of Coquimbo, Chile, owner of one of the most
+                    transparent and darkest skies on the planet. There I had the opportunity to lead for the first time
+                    a telescope to the sky at the “Tololito” observatory, belonging to the Seminario Conciliar of La
+                    Serena. Friendly people at the observatory had the patience to answer my endless questions for whole
+                    afternoons and gave me my first telescope: a refractor of about 3” f/12, with wooden tripod and two
+                    eyepieces. That instrument which I still keep, kept me in love with the phases of the moon, the
+                    rings of Saturn, the moons of Jupiter and the bright globular clusters in the Southern Hemisphere.
+                </p>
+                <p>
+                    Currently I practice my profession of Agricultural Engineering in a transnational company dedicated
+                    to the protection of crops in central Chile. I´m always looking for dark sites for imaging.
+                </p>
+                {% comment %} <p class="block-quote quote-1">
+                    Currently I practice my profession of Agricultural Engineering in a transnational company dedicated
+                    to the protection of crops in central Chile. I´m always looking for dark sites for imaging.
+                </p> {% endcomment %}
+                <p>
+                    From august 2017 I installed all my equipment at El Sauce Observatory on a remote basis. It is
+                    located at Río Hurtado Valley in Chile. With more than 300 clear nights per year, excellent seeing
+                    conditions and sharing the same skies with scientific observatories as CTIO and Gemini South, this
+                    is an amazing place for doing my passion!
+
+                    Thanks for visiting my page and feel free to contact me for comments or questions to
+
+                    cotejardinero AT gmail DOT com
+
+                    José Joaquín Pérez
+                    Rancagua, July 2010
+                </p>
+            </div>
+            <div class="col-md-6 text-right">
+                <img src="{% static 'images/aboutme.jpg' %}" alt="" />
+            </div>
+        </div>
+        {% comment %}
+        <hr class="space m" />
+        <hr />
+        <hr class="space m" /> {% endcomment %}
+    </div>
+</div>
+
+
+{% endblock  %}

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: Published{% endblock title %}
+
+
+{% block content %}
+<div class="header-base">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="title-base text-left">
+                    <h1>Published Images</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section-empty">
+    <div class="container content">
+        <table class="table table-condensed table-hover table-striped bootgrid-table">
+            <thead>
+                <tr>
+                    <th data-column-id="name" class="text-left" style="">
+                        <a href="#" class="column-header-anchor sortable">
+                            <span class="text">Name</span><span class="icon fa"></span>
+                        </a>
+                    </th>
+                    <th data-column-id="desc" class="text-left" style="" data-width="50%">
+                        <a href="#" class="column-header-anchor sortable">
+                            <span class="text">Description</span><span class="icon fa"></span>
+                        </a>
+                    </th>
+
+                    <th data-column-id="logo" data-formatter="image" data-width="10%">
+                        <a href="#" class="column-header-anchor">
+                            <span class="text">Image</span><span class="icon fa"></span>
+                        </a>
+                    </th>
+                    <th data-column-id="link-icon" data-formatter="link-icon" data-width="5%">
+                        <a href="#" class="column-header-anchor">
+                            <span class="text">Link</span><span class="icon fa fa-sort-desc"></span>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for published in  published %}
+                <tr data-row-id="{{ forloop.counter }}">
+                    <td>{{ published.name }}</td>
+                    <td>{{ published.description|safe }}</td>
+                    {% if published.image %}
+                    <td>
+                        {% comment %} <a class="img-box i-center lightbox" {% if published.image %}
+                            href="{{ published.image.url }}" {% endif %}>
+                            <div class="caption">
+                                <i class="fa fa-camera-retro"></i>
+                            </div>
+                            {% if published.image %}
+                            <img alt="" src="{{ published.image.url }}">
+                            {% endif %}
+                        </a> {% endcomment %}
+                        {{ published.image.url }}
+                    </td>
+                    {% endif %}
+                    {% if published.link %}
+                    <td>fa-external-link,{{ published.link }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock  %}

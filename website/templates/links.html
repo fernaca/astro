@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: Links{% endblock title %}
+
+
+{% block content %}
+<div class="header-base">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="title-base text-left">
+                    <h1>Links</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="section-empty">
+    <div class="container content">
+        <table class="table table-condensed table-hover table-striped bootgrid-table">
+            <thead>
+                <tr>
+                    <th data-column-id="name" class="text-left" style="">
+                        <a href="#" class="column-header-anchor sortable">
+                            <span class="text">Name</span><span class="icon fa"></span>
+                        </a>
+                    </th>
+                    <th data-column-id="link-icon" data-formatter="link-icon">
+                        <a href="#" class="column-header-anchor">
+                            <span class="text">Link</span><span class="icon fa fa-sort-desc"></span>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for link in  links %}
+                <tr data-row-id="{{ forloop.counter }}">
+                    <td>{{ link.name }}</td>
+                    {% if link.link %}
+                    <td>fa-external-link,{{ link.link }}</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+{% endblock  %}

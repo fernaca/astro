@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: Equipment{% endblock title %}
+
+
+{% block content %}
+<div class="header-base">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="title-base text-left">
+                    <h1>Equipment</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% comment %} <div class="header-title white" data-parallax="scroll" data-position="top" data-natural-height="550"
+    data-natural-width="1366" data-image-src="{% static 'images/title-4.jpg' %}">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>Equipment</h1>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+<div class="section-bg-color">
+    <div class="container content">
+        <div class="maso-list">
+            <div class="maso-box row">
+                {% for equipment in  equipments %}
+                <div data-sort="1" class="maso-item col-md-4">
+                    <div class="img-box adv-img adv-img-down-text boxed-inverse">
+                        <a class="img-box i-center lightbox" title="{{ equipment.name }}" {% if equipment.image %}
+                            href=" {{ equipment.image.url }}" {% endif %}>
+                            <div class="caption">
+                                <i class="fa fa-camera-retro"></i>
+                            </div>
+                            {% if equipment.image %}
+                            <img alt="{{ equipment.name }}" src="{{ equipment.image.url }}">
+                            {% endif %}
+                        </a>
+                        <div class="caption-bottom">
+                            <h2><a href="{{ equipment.name.url }}">{{ equipment.name }}</a></h2>
+                            <p>{{ equipment.description|safe }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock  %}

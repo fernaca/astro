@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: Portfolio{% endblock title %}
+{% block content %}
+
+{% for category in category %}
+<div class="header-title white" data-parallax="scroll" data-position="top"
+    data-image-src="{% static 'background2.jpg' %}" data-natural-height="550" data-natural-width="1366">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>{{ category.title }}</h1>
+            <p>{{ category.description|safe }}</p>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+<div class="section-empty">
+    <div class="album-main" data-album-anima="fade-bottom">
+        <div class="album-list row">
+            {% for object in objetos %}
+            <div class="album-box col-md-4">
+                <div class="img-box scale adv-img adv-img-half-content" data-anima="fade-left" data-trigger="hover">
+                    {% if object.image1 %}
+                    <a href="{% url 'detail' object.pk %}" class="img-box anima-scale-up anima">
+                        <img alt="{{ object.Name }}" src="{{ object.image1.url }}">
+                    </a>
+                    {% endif %}
+                    <div class="caption">
+                        <h2 class="album-name">{{ object.Name }}</h2>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

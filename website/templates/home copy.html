@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: Home{% endblock title %}
+
+{% block content %}
+
+
+<div class="section-empty my-class-home">
+    <div class="section-slider full-screen-size" data-sub-height="63">
+        <div class="flexslider advanced-slider slider white" data-options="animation:fade">
+            <ul class="slides">
+                {% for imagen in  homeimage %}
+                <li>
+                    <div class="section-slide">
+                        <div class="bg-cover" style="background-image:url('{{ imagen.imagehome.url }}')"></div>
+                        <div class="container">
+                            <div class="pos-slider pos-bottom text-left">
+                                <h1>{{ imagen.caption }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock  %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: Contact{% endblock title %}
+
+
+{% block content %}
+
+<div class="header-base">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="title-base text-left">
+                    <h1>Contact</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="section-empty">
+    {% comment %} <div class="google-map" data-address="via bettin 234, italy" data-skin="gray" data-zoom="15"
+        data-marker-pos-top="50" data-marker="">
+    </div> {% endcomment %}
+    <div class="container content">
+        <div class="row">
+            <div class="col-md-6">
+                <form action="{% url 'contact' %}" class="form-box form-ajax" method="post">
+                    {% csrf_token %}
+                    {% if message_name %}
+                    <center>
+                        <h2>Thanks {{message_name}}!</h2>
+                        <h3>We received your email and will respon shortly.</h3>
+                    </center>
+                    <br><br><br>
+                    {% endif %}
+                    <h3>SEND A MESSAGE</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>Name</p>
+                            <input id="name" name="name" placeholder="Name" type="text" class="form-control form-value"
+                                required>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Email</p>
+                            <input id="email" name="email" placeholder="Email" type="email"
+                                class="form-control form-value" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            {% comment %}
+                            <hr class="space xs" />
+                            <p>Phone</p>
+                            <input id="phone" name="phone" placeholder="phone" type="text"
+                                class="form-control form-value"> {% endcomment %}
+                            <hr class="space xs" />
+                            <p>Message</p>
+                            <textarea id="message" name="message" class="form-control form-value" required></textarea>
+                            <hr class="space s" />
+                            <button class="anima-button circle-button btn-sm btn" type="submit"><i
+                                    class="fa fa-envelope-o"></i>Send message</button>
+                        </div>
+                    </div>
+                    <div class="success-box">
+                        <div class="alert alert-success">Congratulations. Your message has been sent successfully</div>
+                    </div>
+                    <div class="error-box">
+                        <div class="alert alert-warning">Error, please retry. Your message has not been sent</div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <h3>HOW TO REACH US</h3>
+                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply
+                    dummy text of the printing and typesetting industry.</p>
+                {% comment %}
+                <hr class="space s" />
+                <h3>OUR ADDRESS</h3>
+                <p>
+                    Sturlly Technologies<br />
+                    PO Box 16122, Collins Street West,<br />
+                    Victoria 8007, United States.<br />
+                </p> {% endcomment %}
+                {% comment %}
+                <hr class="space s" />
+                <h3 class="subtitle">CONTACTS</h3>
+                <ul class="fa-ul text-s">
+                    <li><i class="fa-li fa fa-phone"></i>(+39) 320-30500975</li>
+                    <li><i class="fa-li fa fa-comments-o"></i>hello@pixor.it</li>
+                    <li><i class="fa-li fa fa-link"></i><a href="http://www.pixor.it/">www.pixor.it</a></li>
+                </ul> {% endcomment %}
+            </div>
+            {% comment %}
+            <hr class="space" />
+            <div class="col-md-12 text-center">
+                <div class="btn-group" role="group">
+                    <div class="btn-group social-group">
+                        <a target="_blank" href="#"><i class="fa fa-facebook"></i></a>
+                        <a target="_blank" href="#"><i class="fa fa-twitter"></i></a>
+                        <a target="_blank" href="#"><i class="fa fa-instagram"></i></a>
+                        <a target="_blank" href="#"><i class="fa fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</div>
+
+{% endblock  %}

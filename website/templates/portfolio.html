@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: Portfolio{% endblock title %}
+
+{% block content %}
+
+<div class="header-title white ken-burn" data-parallax="scroll" data-position="top" data-natural-height="550"
+    data-natural-width="1366" data-image-src="{% static 'background.jpg' %}">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>Portfolio</h1>
+            <p>Categories</p>
+        </div>
+    </div>
+</div>
+
+{% comment %} <div class="header-title white" data-parallax="scroll" data-position="top"
+    data-image-src="{% static 'background.jpg' %}" data-natural-height="550" data-natural-width="1366">
+    <div class="container">
+        <div class="title-base">
+            <hr class="anima" />
+            <h1>Portfolio</h1>
+            <p>Categories</p>
+        </div>
+    </div>
+</div> {% endcomment %}
+
+
+<div class="section-bg-color">
+    <div class="container content">
+        <div class="maso-list">
+            {% comment %} <div class="navbar navbar-inner">
+                <div class="navbar-toggle"><i class="fa fa-bars"></i><span>MENU</span><i class="fa fa-angle-down"></i>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav over ms-rounded inner maso-filters nav-center">
+                        <li class="active"><a data-filter="maso-item">All</a></li>
+                        {% for categoria in categorias %}
+                        <li><a data-filter="{{ categoria.slug }}">{{ categoria.title }}</a></li>
+                        {% endfor %}
+                        <li><a class="maso-order" data-sort="asc"><i class="fa fa-arrow-down"></i></a></li>
+                    </ul>
+                </div>
+            </div> {% endcomment %}
+            <div class="maso-box row">
+                {% for categoria in categorias %}
+                <div data-sort="2" class="maso-item col-md-4 {{ categoria.slug }}">
+                    <div class="img-box adv-img adv-img-down-text boxed-inverse">
+                        <a class="img-box img-scale-up i-center" href="{% url 'category' categoria.slug %}">
+                            <img alt="{{ trip.title }}" src="{{ categoria.HeaderImage.url }}">
+                        </a>
+                        <div class="caption-bottom">
+                            <h2><a href="{% url 'category' categoria.slug %}">{{ categoria.title }}</a></h2>
+                            {% comment %} <p>Tempor incididunt sed</p> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock  %}

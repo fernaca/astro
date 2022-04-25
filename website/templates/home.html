@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: Home{% endblock title %}
+
+{% block content %}
+
+<nav id="fullpage-menu" class="fullpage-menu menu-dots white">
+    <ul>
+        {% for imagen in  homeimage %}
+        <li><a></a></li>
+        {% endfor %}
+    </ul>
+</nav>
+
+<div class="section-empty my-class-home">
+    <div id="fullpage-main" class="home-y" data-options="verticalCentered:false">
+        {% for imagen in  homeimage %}
+        <div class="section overlay-container" style="background-image:url('{{ imagen.imagehome.url }}');">
+            {% if forloop.counter == 1 %}
+            <div class="content">
+                <div class="container box-middle" data-anima="fade-in" data-time="1000">
+                    <h1>WELCOME TO MY ASTROPHOTOGRAPHY PORTAL</h1>
+                    <h2>JOSÉ JOAQUÍN PÉREZ</h2>
+                </div>
+            </div>
+            {% else %}
+            <div class="bottom-area text-center" data-fullpage-anima="fade-bottom" data-timeline="asc" data-time="1500"
+                data-timeline-time="500">
+                <h1 class="anima">{{ imagen.caption }}</h1>
+                {% comment %} <h2 class="anima">Twelve significant photographs in any one year is a good crop</h2>
+                {% endcomment %}
+                <span class="anima anima-fade-left"><a href="{% url 'portfolio' %}"
+                        class="anima-button circle-button btn btn-sm"><i class="fa fa-long-arrow-right"></i>TAKE A
+                        LOOK</a></span>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="section-empty my-class-home">
+    <div class="section-slider full-screen-size" data-sub-height="63">
+        <div class="flexslider advanced-slider slider white" data-options="animation:fade">
+            <ul class="slides">
+                {% for imagen in  homeimage %}
+                <li>
+                    <div class="section-slide">
+                        <div class="bg-cover" style="background-image:url('{{ imagen.imagehome.url }}')"></div>
+                        <div class="container">
+                            <div class="pos-slider pos-bottom text-left">
+                                <h1>{{ imagen.caption }}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock  %}

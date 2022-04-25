@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Astro:: 404{% endblock title %}
+
+
+{% block content %}
+
+<div class="section-empty">
+    <div class="container content box-middle-container full-screen-size" data-sub-height="238">
+        <div class="row">
+            <div class="col-md-12 text-center box-middle">
+                <div>
+                    <hr class="space m" />
+                    {% comment %} <img src="images/logo-dark.png" alt="logo"> {% endcomment %}
+                    <hr class="space m" />
+                    <h1 style="font-size:80px">404</h1>
+                    <h1>Houston, we have a problem</h1>
+                    <p>
+                        THE PAGE YOU WERE LOOKING
+                        FOR COULD NOT BE FOUND
+                    </p>
+                    <hr class="space m" />
+                    <a class="anima-button btn-ms btn circle-button" href={% url 'home' %}><i
+                            class="fa fa-long-arrow-left"></i>Go back to home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock  %}
