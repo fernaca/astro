@@ -6,6 +6,7 @@ admin.site.site_header = 'Astrofotografía Austral'
 
 
 class ImageHomeAdm(admin.ModelAdmin):
+    list_display = ['caption', 'rating']
     readonly_fields = ["preview_image"]
 
     def preview_image(self, obj):
