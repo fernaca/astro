@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from website.models import Category, Object, ImageHome, Trip, Equipment, Published, Links
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Envio de mail
 from django.core.mail import send_mail, BadHeaderError
@@ -14,7 +15,19 @@ def home(request):
 
 
 def equipments(request):
-    equipments = Equipment.objects.all()
+    Object_list = Equipment.objects.all()
+#Paginacion
+    paginator = Paginator(Object_list, per_page=10)
+    page = request.GET.get('page')
+    try:
+        equipments = paginator.page(page)
+    except PageNotAnInteger:
+# If page is not an integer deliver the first page
+        equipments = paginator.page(1)
+    except EmptyPage:
+# If page is out of range deliver last page of results
+        equipments = paginator.page(paginator.num_pages)
+
     return render(request, 'equipment.html', {'equipments': equipments})
 
 
@@ -56,8 +69,21 @@ def published(request):
 
 
 def trips(request):
-    trips = Trip.objects.all().order_by('-date_trip')
-    return render(request, 'trips.html', {'trips': trips})
+    Object_list = Trip.objects.all().order_by('-date_trip')
+#Paginacion
+    paginator = Paginator(Object_list, per_page=10)
+    page = request.GET.get('page')
+    try:
+        trips = paginator.page(page)
+    except PageNotAnInteger:
+# If page is not an integer deliver the first page
+        trips = paginator.page(1)
+    except EmptyPage:
+# If page is out of range deliver last page of results
+        trips = paginator.page(paginator.num_pages)
+
+    context = {'page': page, 'trips': trips}
+    return render(request, 'trips.html', context)
 
 
 def about(request):
@@ -68,7 +94,19 @@ def portfocategory(request, slug_text):
     # Obtener la categoria segun el slug
     category = Category.objects.filter(slug=slug_text)
     # Obtenemos los objetos de esa categoria
-    objetos = Object.objects.filter(category__slug=slug_text)
+    Object_list = Object.objects.filter(category__slug=slug_text)
+#Paginacion
+    paginator = Paginator(Object_list, per_page=10)
+    page = request.GET.get('page')
+    try:
+        objetos = paginator.page(page)
+    except PageNotAnInteger:
+# If page is not an integer deliver the first page
+        objetos = paginator.page(1)
+    except EmptyPage:
+# If page is out of range deliver last page of results
+        objetos = paginator.page(paginator.num_pages)
+
     return render(request, 'portfocategory.html', {'objetos': objetos, 'category': category})
 
 

@@ -35,6 +35,29 @@
             </div>
             {% endfor %}
         </div>
+        {% if objetos.has_other_pages %}
+        <div class="btn-group" role="group" aria-label="Item pagination">
+        {% if objetos.has_previous %}
+            <a href="?page={{ objetos.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
+        {% endif %}
+
+        {% for page_number in objetos.paginator.page_range %}
+            {% if objetos.number == page_number %}
+                <button class="btn btn-outline-primary active">
+                    <span>{{ page_number }} <span class="sr-only">(current)</span></span>
+                </button>
+            {% else %}
+                <a href="?page={{ page_number }}" class="btn btn-outline-primary">
+                    {{ page_number }}
+                </a>
+            {% endif %}
+        {% endfor %}
+
+        {% if objetos.has_next %}
+            <a href="?page={{ objetos.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
+        {% endif %}
+    </div>
+    {% endif %}
     </div>
 </div>
 
