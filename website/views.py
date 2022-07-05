@@ -9,6 +9,22 @@ from .forms import ContactForm
 # Create your views here.
 
 
+def paginacion(in_object_list, in_per_page, in_page):
+## Funcion para manejar la paginacion.
+## Recibe la lista y devuelve el objeto
+#Paginacion
+    paginator = Paginator(in_object_list, per_page=in_per_page)
+    try:
+        paginat = paginator.page(in_page)
+    except PageNotAnInteger:
+# If page is not an integer deliver the first page
+        paginat = paginator.page(1)
+    except EmptyPage:
+# If page is out of range deliver last page of results
+        paginat = paginator.page(paginator.num_pages)
+
+    return paginat
+
 def home(request):
     homeimage = ImageHome.objects.all().order_by('-rating')
     return render(request, 'home.html', {'homeimage': homeimage})
@@ -16,23 +32,12 @@ def home(request):
 
 def equipments(request):
     Object_list = Equipment.objects.all()
-#Paginacion
-    paginator = Paginator(Object_list, per_page=10)
-    page = request.GET.get('page')
-    try:
-        equipments = paginator.page(page)
-    except PageNotAnInteger:
-# If page is not an integer deliver the first page
-        equipments = paginator.page(1)
-    except EmptyPage:
-# If page is out of range deliver last page of results
-        equipments = paginator.page(paginator.num_pages)
+# Resolver Paginacion
+    equipments = paginacion(Object_list, 10, None)
 
     return render(request, 'equipment.html', {'equipments': equipments})
 
 
-# def contact(request):
-#     return render(request, 'contact.html', {})
 def contact(request):
 
     if request.method == 'POST':

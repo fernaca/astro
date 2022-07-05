@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Astro:: Home{% endblock title %}
-
+{% block local_style %}
+{% comment %} <link rel="stylesheet" href="{% static 'scripts/jquery.fullPage.css' %}"> {% endcomment %}
+{% endblock local_style %}
 {% block content %}
 
 <nav id="fullpage-menu" class="fullpage-menu menu-dots white">
@@ -60,3 +62,8 @@
     </div>
 </div>
 {% endblock  %}
+
+{% block local_scripts %}   
+{% comment %} <script src="{% static 'scripts/jquery.fullPage.min.js' %}"></script>
+<script src="{% static 'scripts/smooth.scroll.min.js' %}"></script> {% endcomment %}
+{% endblock local_scripts %}

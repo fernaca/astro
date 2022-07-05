@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block  title %} {% endblock  %}</title>
+    {% block local_style %}   {% endblock local_style %}
     <meta name="description" content="Astrofotografia">
     <link rel="stylesheet" href="{% static 'scripts/bootstrap/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -37,7 +38,7 @@
 </head>
 
 <body>
-    <div id="preloader"></div>
+    {% comment %} <div id="preloader"></div> {% endcomment %}
     <header class="bg-transparent menu-transparent scroll-change " data-menu-anima="fade-right">
         <div class="navbar navbar-default navbar-fixed-top" role="navigation">
             <div class="navbar navbar-main">
@@ -113,17 +114,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        {% comment %} </div> {% endcomment %}
 
-
-        <script async src="{% static 'scripts/bootstrap/js/bootstrap.min.js' %}"></script>
-        <script src="{% static 'scripts/flexslider/jquery.flexslider-min.js' %}"></script>
-        <script src="{% static 'scripts/jquery.tab-accordion.js' %}"></script>
-        <script src="{% static 'scripts/parallax.min.js' %}"></script>
-        <script src="{% static 'scripts/jquery.magnific-popup.min.js' %}"></script>
-        <script src="{% static 'scripts/smooth.scroll.min.js' %}"></script>
-        <script src="{% static 'scripts/bootstrap/js/bootstrap.popover.min.js' %}"></script>
-
+        {% block local_scripts %}{% endblock local_scripts %}
     </footer>
 </body>
 

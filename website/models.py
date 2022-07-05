@@ -106,7 +106,7 @@ class Published(models.Model):
     description = RichTextField(blank=True, null=True)
     link = models.CharField(max_length=255, blank=True, null=True)
     image = models.ImageField(null=True, blank=True, upload_to='published/')
-
+ 
     class Meta:
         verbose_name_plural = 'Publicaciones'
 
