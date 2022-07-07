@@ -9,13 +9,14 @@ from .forms import ContactForm
 # Create your views here.
 
 
-def paginacion(in_object_list, in_per_page, in_page):
+def paginacion(in_object_list, in_per_page, request):
 ## Funcion para manejar la paginacion.
 ## Recibe la lista y devuelve el objeto
 #Paginacion
     paginator = Paginator(in_object_list, per_page=in_per_page)
+    page = request.GET.get('page')
     try:
-        paginat = paginator.page(in_page)
+        paginat = paginator.page(page)
     except PageNotAnInteger:
 # If page is not an integer deliver the first page
         paginat = paginator.page(1)
@@ -33,7 +34,7 @@ def home(request):
 def equipments(request):
     Object_list = Equipment.objects.all()
 # Resolver Paginacion
-    equipments = paginacion(Object_list, 10, None)
+    equipments = paginacion(Object_list, 2, request)
 
     return render(request, 'equipment.html', {'equipments': equipments})
 

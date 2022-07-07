@@ -34,7 +34,8 @@
                         </a>
                         <div class="caption-bottom">
                             <h2><a href="{{ trip.name.url }}">{{ trip.name }}</a></h2>
-                            <p>{{ trip.description|safe }}</p>
+                            {% comment %} <p>{{ trip.description|make_list|first }} {{ trip.description|safe }}</p> {% endcomment %}
+                            {{ trip.description|safe }}
                         </div>
                     </div>
                 </div>
