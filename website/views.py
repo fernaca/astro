@@ -103,7 +103,7 @@ def portfocategory(request, slug_text):
     category = Category.objects.filter(slug=slug_text)
     # Obtenemos los objetos de esa categoria. 
     # Lo ordenamos por Warning del Paginator
-    Object_list = Object.objects.filter(category__slug=slug_text).order_by('title')
+    Object_list = Object.objects.filter(category__slug=slug_text).order_by('id')
 #Paginacion
     paginator = Paginator(Object_list, per_page=10)
     page = request.GET.get('page')
