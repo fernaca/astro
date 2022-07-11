@@ -8,7 +8,9 @@ from django.http import HttpResponse
 from .forms import ContactForm
 # Create your views here.
 
-
+def entry_not_found(request, exception):
+    return render(request, '404.html')
+    
 def paginacion(in_object_list, in_per_page, request):
 ## Funcion para manejar la paginacion.
 ## Recibe la lista y devuelve el objeto
@@ -32,7 +34,7 @@ def home(request):
 
 
 def equipments(request):
-    Object_list = Equipment.objects.all()
+    Object_list = Equipment.objects.all().order_by('name')
 # Resolver Paginacion
     equipments = paginacion(Object_list, 2, request)
 
@@ -99,8 +101,9 @@ def about(request):
 def portfocategory(request, slug_text):
     # Obtener la categoria segun el slug
     category = Category.objects.filter(slug=slug_text)
-    # Obtenemos los objetos de esa categoria
-    Object_list = Object.objects.filter(category__slug=slug_text)
+    # Obtenemos los objetos de esa categoria. 
+    # Lo ordenamos por Warning del Paginator
+    Object_list = Object.objects.filter(category__slug=slug_text).order_by('title')
 #Paginacion
     paginator = Paginator(Object_list, per_page=10)
     page = request.GET.get('page')
